@@ -89,6 +89,16 @@ def udpate_surplus_worksheet(surplus_figures):
     surplus_sheet.append_row(surplus_figures)
     print("Surplus worksheet updated successfully.")
 
+def update_worksheet(data, worksheet):
+    """
+    Receives a list of integers to be inserted into a worksheet
+    Update the relevant worksheet with the data provided
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully.")
+
 
 def main():
     """
@@ -96,9 +106,10 @@ def main():
     """
     data = get_sales_data()
     sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
+    update_worksheet(data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    udpate_surplus_worksheet(new_surplus_data)
+    update_worksheet(new_surplus_data, "surplus")
+
 
 print("Welcome to Love Sandwiches data automation")
 main()
